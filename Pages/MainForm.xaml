@@ -1,0 +1,79 @@
+﻿<Page x:Class="pract7_trpo.Pages.MainForm"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:pract7_trpo.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="MainForm">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="125"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+            <StackPanel>
+                <Label Content="Имя:"/>
+                <Label Content="Фамилия:"/>
+                <Label Content="Отчество:"/>
+                <Label Content="Специализация:"/>
+            </StackPanel>
+            <StackPanel x:Name="InfoForm">
+                <Label Content="{Binding Name}"/>
+                <Label Content="{Binding LastName}"/>
+                <Label Content="{Binding MiddleName}"/>
+                <Label Content="{Binding Specialization}"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <Button Width="300" Click="AddButton_Click" Style="{DynamicResource AddButton}">Создать пациента</Button>
+            <Button Width="300" Click="RemoveButton_Click" Style="{DynamicResource RemoveButton}">Удалить пациента</Button>
+            <Button Width="300" Click="AppointmentButton_Click">Начать приём</Button>
+            <Button Width="300" Click="EditButton_Click">Изменить информацию</Button>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBox x:Name="FindBox" Text="{Binding FindString, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <ListView Height="400"
+                      ItemsSource="{Binding Patients}"
+                      SelectedItem="{Binding currentPatient}"
+                      MouseDoubleClick="EditButton_Click">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Идентификатор: "></TextBlock>
+                                <TextBlock Text="{Binding ID}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Имя: "></TextBlock>
+                                <TextBlock Text="{Binding Name}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Фамилия: "></TextBlock>
+                                <TextBlock Text="{Binding LastName}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Отчество: "></TextBlock>
+                                <TextBlock Text="{Binding MiddleName}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Номер телефона: "></TextBlock>
+                                <TextBlock Text="{Binding PhoneNumber}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Диагноз: "></TextBlock>
+                                <TextBlock Text="{Binding Diagnosis}"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Page>

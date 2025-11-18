@@ -1,0 +1,41 @@
+﻿<Page x:Class="pract7_trpo.Pages.EditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:pract7_trpo.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="250" d:DesignWidth="450"
+      Title="EditPage">
+    <DockPanel>
+        <Button Content="Назад" Click="BackButton_Click" DockPanel.Dock="Top" HorizontalAlignment="Left" Height="25" Width="50"></Button>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel x:Name="EditPatientForm">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel>
+                        <Label Content="Имя: "></Label>
+                        <Label Content="Фамилия: "></Label>
+                        <Label Content="Отчество: "></Label>
+                        <Label Content="Номер телефона"></Label>
+                        <Label Content="Дата рождения"></Label>
+                    </StackPanel>
+                    <StackPanel Width="200">
+                        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        <TextBox Text="{Binding MiddleName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        <DatePicker SelectedDate="{Binding Birthday, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+                        <Button
+                        Content="Изменить"
+                        Name="Edit"
+                        Click="EditPatient_Click"/>
+                        <Button Content="Сбросить"
+                        Name="Reset"
+                        Click="Reset_Click"
+                        />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </DockPanel>
+</Page>

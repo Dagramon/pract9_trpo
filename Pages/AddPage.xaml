@@ -1,0 +1,38 @@
+﻿<Page x:Class="pract7_trpo.Pages.AddPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:pract7_trpo.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="250" d:DesignWidth="450"
+      Title="AddPage">
+    <DockPanel>
+
+        <Button Content="Назад" DockPanel.Dock="Top" HorizontalAlignment="Left" Click="BackButton_Click" Height="25" Width="50"></Button>
+        
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <Label Content="Имя"/>
+                    <Label Content="Фамилия"/>
+                    <Label Content="Отчество"/>
+                    <Label Content="Номер телефона"/>
+                    <Label Content="Дата рождения"/>
+                </StackPanel>
+                <StackPanel x:Name="AddForm">
+                    <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <TextBox Text="{Binding MiddleName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <DatePicker SelectedDate="{Binding Birthday, UpdateSourceTrigger=PropertyChanged}" SelectedDateFormat="Short"></DatePicker>
+                    <Button Name="AddPatient"
+                     Height="25" Width="150"
+                     VerticalAlignment="Bottom"
+                     Content="Добавить" 
+                     Click="AddPatient_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </DockPanel>
+</Page>
