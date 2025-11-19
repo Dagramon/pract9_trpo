@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -17,17 +17,22 @@ using System.Windows.Shapes;
 
 namespace pract7_trpo.Pages
 {
-    public partial class LoginPage : Page
+    /// <summary>
+    /// Логика взаимодействия для RegisterPage.xaml
+    /// </summary>
+    public partial class RegisterPage : Page
     {
-        private Doctor currentDoctor = new Doctor();
-        Random rng = new Random();
-        Info info;
-        public LoginPage(Info _info)
+        public RegisterPage(Info _info)
         {
             InitializeComponent();
             info = _info;
-            LoginForm.DataContext = currentDoctor;
+            RegForm.DataContext = registeredDoctor;
         }
+
+        private Doctor registeredDoctor = new Doctor();
+        public Info info;
+        Random rng = new Random();
+
         private string CreateID()
         {
             if (!File.Exists("IDS.txt"))
@@ -57,30 +62,30 @@ namespace pract7_trpo.Pages
 
             return newID.ToString();
         }
-
-        private void Login_Click(object sender, RoutedEventArgs e)
+        private void Register_Click(object sender, RoutedEventArgs e)
         {
-            if (currentDoctor.ID != string.Empty)
+            if (registeredDoctor.Name != null &&
+                registeredDoctor.LastName != null &&
+                registeredDoctor.MiddleName != null &&
+                registeredDoctor.Specialization != null &&
+                registeredDoctor.Password != null)
             {
-                if (File.Exists($"D_{currentDoctor.ID}"))
+                if (registeredDoctor.Password == registeredDoctor.RepeatPassword)
                 {
-                    string jsonString = File.ReadAllText($"D_{currentDoctor.ID}");
-                    Doctor tempDoctor = JsonSerializer.Deserialize<Doctor>(jsonString);
-                    if (currentDoctor.Password == tempDoctor.Password)
-                    {
-                        currentDoctor = tempDoctor;
-                        NavigationService.Navigate(new MainForm(currentDoctor, info));
-                    }
-                    else
-                    {
-                        currentDoctor = new Doctor();
-                        LoginForm.DataContext = currentDoctor;
-                        MessageBox.Show("Неверный пароль");
-                    }
+                    string ID = CreateID();
+                    registeredDoctor.ID = ID;
+                    string jsonString = JsonSerializer.Serialize(registeredDoctor);
+                    File.WriteAllText($"D_{ID}", jsonString);
+                    MessageBox.Show($"Доктор зарегестрирован с идентификатором {ID}");
+                    registeredDoctor = new Doctor();
+                    RegForm.DataContext = registeredDoctor;
+                    info.JSONFiles++;
+                    info.Doctors++;
+                    NavigationService.GoBack();
                 }
                 else
                 {
-                    MessageBox.Show("Пользователь не найден");
+                    MessageBox.Show("Пароли не совпадают");
                 }
             }
             else
@@ -88,9 +93,10 @@ namespace pract7_trpo.Pages
                 MessageBox.Show("Все поля должны быть заполнены");
             }
         }
-        private void RegButton_Click(object sender, RoutedEventArgs e)
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new RegisterPage(info));
+            NavigationService.GoBack();
         }
     }
 }

@@ -6,30 +6,35 @@
         xmlns:local="clr-namespace:pract7_trpo"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1000">
-    <DockPanel Style="{DynamicResource MainPanel}">
-        <Menu DockPanel.Dock="Top" Height="25">
+    <Grid Style="{DynamicResource MainPanel}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
             <MenuItem Header="Меню" Style="{DynamicResource MenuMain}">
                 <MenuItem Header="Настройки">
                     <MenuItem Header="Сменить тему" Click="MenuItem_Click"></MenuItem>
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" DockPanel.Dock="Top" VerticalAlignment="Center">
+        <Frame x:Name="MainFrame" Grid.Row="1">
 
         </Frame>
-        <StackPanel DockPanel.Dock="Bottom" Background="Gray" Height="50" VerticalAlignment="Bottom" Orientation="Horizontal">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+        <StackPanel Style="{StaticResource InfoPanel}" Grid.Row="2">
+            <StackPanel Style="{StaticResource InfoPanelItem}">
                 <Label Content="Количество файлов: "></Label>
                 <Label Content="{Binding JSONFiles}"></Label>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <StackPanel Style="{StaticResource InfoPanelItem}">
                 <Label Content="Количество врачей: "></Label>
                 <Label Content="{Binding Doctors}"></Label>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <StackPanel Style="{StaticResource InfoPanelItem}">
                 <Label Content="Количество пациентов: "></Label>
                 <Label Content="{Binding Patients}"></Label>
             </StackPanel>
         </StackPanel>
-    </DockPanel>
+    </Grid>
 </Window>

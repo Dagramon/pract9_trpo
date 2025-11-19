@@ -17,10 +17,10 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <DockPanel Grid.Column="0">
-            <Button Content="Назад" Click="BackButton_Click" HorizontalAlignment="Left" DockPanel.Dock="Top" Height="25" Width="50"></Button>
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="250">
+            <Button Content="Назад" Click="BackButton_Click" Style="{DynamicResource BackButton}" DockPanel.Dock="Top"></Button>
+            <StackPanel Style="{StaticResource VerticalPanel}">
                 <StackPanel>
-                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                    <StackPanel DockPanel.Dock="Right" Style="{StaticResource HorizontalPanel}">
                         <StackPanel>
                             <Label Content="Имя: "></Label>
                             <Label Content="Фамилия: "></Label>
@@ -28,7 +28,7 @@
                             <Label Content="Последний врач: "></Label>
                             <Label Content="Дата рождения"></Label>
                         </StackPanel>
-                        <StackPanel HorizontalAlignment="Right">
+                        <StackPanel>
                             <Label Content="{Binding Name}"></Label>
                             <Label Content="{Binding LastName}"></Label>
                             <Label Content="{Binding MiddleName}"></Label>
@@ -39,39 +39,37 @@
                     <Label Content="Диагноз:"></Label>
                     <TextBox Text="{Binding Diagnosis, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     <Label Content="Рекомендации: "></Label>
-                    <TextBox Height="50"
-                     Text="{Binding Recomendations, UpdateSourceTrigger=PropertyChanged}"
-                     TextWrapping="Wrap"
-                     VerticalScrollBarVisibility="Auto"/>
+                    <TextBox Style="{StaticResource BigTextBox}"
+                             Text="{Binding Recomendations, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <StackPanel>
-                    <Button Height="25" Width="100"
-                    Name="EditPatient"
-                    Content="Закончить приём"
-                    Click="EditPatient_Click"/>
+                    <Button
+                            Name="EditPatient"
+                            Content="Закончить приём"
+                            Click="EditPatient_Click"/>
                 </StackPanel>
             </StackPanel>
         </DockPanel>
         <StackPanel Grid.Column="1">
             <Label Content="История приёмов: "></Label>
-            <ListView Height="350"
+            <ListView
                 ItemsSource="{Binding AppointmentStories}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Style="{StaticResource HorizontalPanel}">
                                 <TextBlock Text="Дата: "></TextBlock>
                                 <TextBlock Text="{Binding dateString}"></TextBlock>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Style="{StaticResource HorizontalPanel}">
                                 <TextBlock Text="ID доктора: "></TextBlock>
                                 <TextBlock Text="{Binding doctor_id}"></TextBlock>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Style="{StaticResource HorizontalPanel}">
                                 <TextBlock Text="Диагноз: "></TextBlock>
                                 <TextBlock Text="{Binding diagnosis}"></TextBlock>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Style="{StaticResource HorizontalPanel}">
                                 <TextBlock Text="Рекомендации: "></TextBlock>
                                 <TextBlock Text="{Binding recomendations}"></TextBlock>
                             </StackPanel>

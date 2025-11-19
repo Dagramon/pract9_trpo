@@ -16,4 +16,10 @@
     <SolidColorBrush x:Key="ButtonRemoveBackground" Color="#ff0000"/>
     <SolidColorBrush x:Key="ButtonRemoveHover" Color="#ba0000"/>
     <SolidColorBrush x:Key="ButtonRemovePressed" Color="#7d0404"/>
+
+    <SolidColorBrush x:Key="TextBoxBackground" Color="White"/>
+    <SolidColorBrush x:Key="TextBoxForeground" Color="Black"/>
+
+    <SolidColorBrush x:Key="MenuItemHoverBackground" Color="Gray"/>
+    <SolidColorBrush x:Key="MenuItemHoverForeground" Color="Black"/>
 </ResourceDictionary>

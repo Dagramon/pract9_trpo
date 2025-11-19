@@ -8,10 +8,10 @@
       d:DesignHeight="250" d:DesignWidth="450"
       Title="EditPage">
     <DockPanel>
-        <Button Content="Назад" Click="BackButton_Click" DockPanel.Dock="Top" HorizontalAlignment="Left" Height="25" Width="50"></Button>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Button Style="{DynamicResource BackButton}" Content="Назад" Click="BackButton_Click" DockPanel.Dock="Top"></Button>
+        <StackPanel Style="{StaticResource VerticalPanel}">
             <StackPanel x:Name="EditPatientForm">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Style="{StaticResource HorizontalPanel}">
                     <StackPanel>
                         <Label Content="Имя: "></Label>
                         <Label Content="Фамилия: "></Label>
@@ -19,20 +19,19 @@
                         <Label Content="Номер телефона"></Label>
                         <Label Content="Дата рождения"></Label>
                     </StackPanel>
-                    <StackPanel Width="200">
+                    <StackPanel>
                         <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                         <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                         <TextBox Text="{Binding MiddleName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                         <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                         <DatePicker SelectedDate="{Binding Birthday, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
                         <Button
-                        Content="Изменить"
-                        Name="Edit"
-                        Click="EditPatient_Click"/>
-                        <Button Content="Сбросить"
-                        Name="Reset"
-                        Click="Reset_Click"
-                        />
+                                Content="Изменить"
+                                Name="Edit"
+                                Click="EditPatient_Click"/>
+                         <Button Content="Сбросить"
+                                Name="Reset"
+                                Click="Reset_Click"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

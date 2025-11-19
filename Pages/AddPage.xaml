@@ -9,10 +9,10 @@
       Title="AddPage">
     <DockPanel>
 
-        <Button Content="Назад" DockPanel.Dock="Top" HorizontalAlignment="Left" Click="BackButton_Click" Height="25" Width="50"></Button>
+        <Button Style="{StaticResource BackButton}" Content="Назад" DockPanel.Dock="Top" Click="BackButton_Click"></Button>
         
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <StackPanel Orientation="Horizontal">
+        <StackPanel Style="{StaticResource VerticalPanel}">
+            <StackPanel Style="{StaticResource HorizontalPanel}">
                 <StackPanel>
                     <Label Content="Имя"/>
                     <Label Content="Фамилия"/>
@@ -25,12 +25,10 @@
                     <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     <TextBox Text="{Binding MiddleName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                    <DatePicker SelectedDate="{Binding Birthday, UpdateSourceTrigger=PropertyChanged}" SelectedDateFormat="Short"></DatePicker>
+                    <DatePicker SelectedDate="{Binding Birthday, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
                     <Button Name="AddPatient"
-                     Height="25" Width="150"
-                     VerticalAlignment="Bottom"
-                     Content="Добавить" 
-                     Click="AddPatient_Click"/>
+                            Content="Добавить" 
+                            Click="AddPatient_Click"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
